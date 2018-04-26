@@ -35,3 +35,22 @@ plot(0,0);
 hold off;
 
 %---- FIR Approximated Filter ---%
+M = 3;
+a = 1;
+b = zeros(1,M*D_one+1);
+for i = 0:M
+    b(i*D_one+1) = a_one^i;
+    disp(b(i*D_one+1));
+end
+y_one = filter(b,a,u);
+b = zeros(1,M*D_two+1);
+for i = 0:M
+    b(i*D_two+1) = a_two^i;
+    disp(b(i*D_two+1));
+end
+y_two = filter(b,a,u);
+figure;
+plot(t(1:7000),y_one(1:7000));
+hold on;
+plot(t(1:7000),y_two(1:7000));
+hold off;
